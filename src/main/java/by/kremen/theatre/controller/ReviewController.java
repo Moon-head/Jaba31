@@ -67,6 +67,7 @@ public class ReviewController {
 
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
+        model.addAttribute("owner", true);
 
         log.info("get reviews of user");
         return "reviews";
@@ -95,5 +96,22 @@ public class ReviewController {
 
         log.info("add review on performance");
         return "reviews";
+    }
+
+    @GetMapping("/reviewDel")
+    public String mainDel(@RequestParam String rev_id, @AuthenticationPrincipal User user, Model model) {
+       /* if(user.getAuthorities()!= Collections.singleton(Role.ADMIN)){
+
+            model.addAttribute("message", "If you want add dishes you have to be an ADMIN");
+            return "login";
+        }*/
+
+        //Long idL = Long.getLong(perf_id);
+        //Performance performance = performanceRepository.findById(idL);
+        reviewRepository.delete(reviewRepository.findById(Integer.parseInt(rev_id)));
+
+        log.info("delete review");
+
+        return "redirect:/myreviews";
     }
 }

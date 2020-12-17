@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
+    Review findById(int id);
     Review findByTitle(String title);
     List<Review> findAllByTitle(String title);
     List<Review> findAllByUser(User user);

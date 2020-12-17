@@ -14,6 +14,7 @@
         <th>Title</th>
         <th>Theater</th>
         <th>User</th>
+        <th th:if="${owner}">Del</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
         <td th:text="${review.title}"/>
         <td th:text="${review.body}"/>
         <td th:text="${review.user.username}"/>
+        <td th:if="${owner}"><a th:href="@{/reviewDel(rev_id=${review.id})}"/>Del</td>
     </tr>
     </tbody>
 </table>
