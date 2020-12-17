@@ -6,6 +6,7 @@ import by.kremen.theatre.model.User;
 import by.kremen.theatre.repository.PerformanceRepository;
 import by.kremen.theatre.repository.ReviewRepository;
 import by.kremen.theatre.repository.UserRepository;
+import by.kremen.theatre.service.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,14 @@ public class ReviewController {
         review.setPerformance(performanceRepository.findById(Integer.parseInt(perf_id)));
         reviewRepository.save(review);
 
+        String text =" Your review " + review.getTitle() + ": " + review.getBody() + " was posted to " + review.getPerformance().getTitle();
+        model.addAttribute("text", text);
+        //EmailController ec = new EmailController();
+        //ec.sendSimpleEmail(text, user.getEmail());
+        MailSender mailSender = new MailSender();
+        mailSender.Send("Thanks for you review", text, user.getEmail());
         log.info("add review");
+        //return "redirect:/sendEmail";
         return "redirect:/main";
     }
 
