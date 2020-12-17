@@ -42,10 +42,10 @@
     </span>
 </div>
 
-<div>Dishes list
+<div>performances list
 
     <span th:if="${performances.empty}">
-         No Dishes Available </span>
+         No performances Available </span>
 
     <span th:each="performance : ${performances}">
         <span th:text="${performance.title}"/>

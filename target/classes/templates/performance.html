@@ -1,11 +1,25 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="UTF-8">
     <title>performance</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>performance</h1>
-<a  href="/main">Main page</a>
+<div>performances list
+
+    <span th:if="${performance.empty}">
+         No performances  </span>
+
+    <span th:each="performance : ${performances}">
+        <span th:text="${performance.id}"/>
+        <span th:text="${performance.title}"/>
+        <span th:text="${performance.theatre}"/>
+        <span th:text="${performance.date}"/>
+        <span th:text="${performance.time}"/>
+        <span th:text="${performance.actors}"/></br>
+        <!--<b th:text="${user.GetAuthorName()}"></b></br>-->
+    </span>
+</div>
 </body>
 </html>
