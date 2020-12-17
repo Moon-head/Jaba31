@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
 
@@ -10,7 +11,16 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+    <form th:action="@{/myreviews}" method="get">
+        <input type="submit" value="My reviews"/>
+    </form>
+    <form th:action="@{/reviews}" method="get">
+        <input type="submit" value="All reviews"/>
+    </form>
 </div>
+
+
+<div th:if="${message }"></div>
 
 
 <div>
@@ -22,39 +32,41 @@
     </form>
 </div>
 <div>
-    <form method="post" th:action="@{/filter}">
-        <input type="text" name="filter" placeholder="enter name"/>
+    <form method="post" th:action="@{/search}">
+        <input type="text" name="title" placeholder="enter title"/>
         <button type="submit">Search</button>
     </form>
 </div>
-<div>Users list
 
-    <span th:if="${users.empty}">
-         No Users Available </span>
-
-    <span th:each="user : ${users}">
-        <span th:text="${user.id}"/>
-        <span th:text="${user.username}"/>
-        <span th:text="${user.password}"/>
-        <span th:text="${user.roles}"/>
-        <span th:text="${user.email}"/></br>
-        <!--<b th:text="${user.GetAuthorName()}"></b></br>-->
-    </span>
-</div>
 
 <div>performances list
 
     <span th:if="${performances.empty}">
          No performances Available </span>
-
-    <span th:each="performance : ${performances}">
-        <span th:text="${performance.title}"/>
-        <span th:text="${performance.theater}"/>
-        <span th:text="${performance.date}"/>
-        <a  th:href="@{/review(perf_id=${performance.id})}">Add new review page</a>
-        <a  th:href="@{'/review?perf_id=' + ${performance.id}}">Add new review page</a>
-        </br>
-    </span>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Theater</th>
+        <th>Date</th>
+        <th>Add</th>
+        <th>Get</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="performance : ${performances}">
+        <td th:text="${performance.title}"></td>
+        <td th:text="${performance.theater}"></td>
+        <td th:text="${performance.date}"></td>
+        <td>    <form method="post" th:action="@{/review(perf_id=${performance.id})}">
+            <button type="submit">◄</button>
+        </form></td>
+        <td>    <form method="post" th:action="@{/reviewsPerf(perf_id=${performance.id})}">
+            <button type="submit">►</button>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
 </div>
 </body>
 </html>

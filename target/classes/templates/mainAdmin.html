@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
 
@@ -42,6 +43,7 @@
     </span>
 </div>
 
+<br>
 <form th:action="@{/admin/performance}" method="get">
     <button>Add performance</button>
 </form>
@@ -57,6 +59,7 @@
         <span th:text="${performance.theater}"/>
         <span th:text="${performance.date}"/>
         <a  th:href="@{/admin/performanceUpd(perf_id=${performance.id})}">Update performance</a>
+        <a  th:href="@{/admin/performanceDel(perf_id=${performance.id})}">Delete performance</a>
         </br>
     </span>
 </div>

@@ -117,4 +117,18 @@ System.out.println(perf_id);
         return "redirect:/admin/main";
     }
 
+    @GetMapping("/admin/performanceDel")
+    public String mainDel(@RequestParam String perf_id, @AuthenticationPrincipal User user, Model model) {
+       /* if(user.getAuthorities()!= Collections.singleton(Role.ADMIN)){
+
+            model.addAttribute("message", "If you want add dishes you have to be an ADMIN");
+            return "login";
+        }*/
+
+        //Long idL = Long.getLong(perf_id);
+        //Performance performance = performanceRepository.findById(idL);
+        performanceRepository.delete(performanceRepository.findById(Integer.parseInt(perf_id)));
+
+        return "redirect:/admin/main";
+    }
 }

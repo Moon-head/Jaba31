@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<td><a  th:href="@{/review(perf_id=${performance.id})}">Add review</a></td>
+<td><a  th:href="@{/reviewsPerf(perf_id=${performance.id})}">Get reviews</a></td>
+</body>
+</html>

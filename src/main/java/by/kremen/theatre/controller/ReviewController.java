@@ -24,6 +24,8 @@ public class ReviewController {
     private ReviewRepository reviewRepository;
     @Autowired
     private PerformanceRepository performanceRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/review")
     public String addUser(@RequestParam String perf_id, Review review, Model model, @AuthenticationPrincipal User user){
@@ -50,5 +52,40 @@ public class ReviewController {
         model.addAttribute("id", perf_id);
 
         return "review";
+    }
+
+
+    @GetMapping("/myreviews")
+    public String myreviews(@AuthenticationPrincipal User user, Model model) {
+
+        List<Review> reviews = reviewRepository.findAllByUser(user);
+
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
+
+        return "reviews";
+    }
+
+    @GetMapping("/reviews")
+    public String reviews(@AuthenticationPrincipal User user, Model model) {
+
+        List<Review> reviews = reviewRepository.findAll();
+
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
+
+        return "reviews";
+    }
+
+    @GetMapping("/reviewsPerf")
+    public String reviewsPerf(@RequestParam String perf_id, @AuthenticationPrincipal User user, Model model) {
+
+
+        List<Review> reviews = reviewRepository.findAllByPerformance(performanceRepository.findById(Integer.parseInt(perf_id)));
+
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
+
+        return "reviews";
     }
 }

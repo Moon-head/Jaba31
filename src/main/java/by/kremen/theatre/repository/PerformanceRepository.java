@@ -2,6 +2,7 @@ package by.kremen.theatre.repository;
 
 import by.kremen.theatre.model.Performance;
 import by.kremen.theatre.model.Theater;
+import by.kremen.theatre.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,8 @@ public interface PerformanceRepository extends CrudRepository<Performance, Integ
     Performance findById(int id);
     List<Performance> findById(long id);
     Performance findByTitle(String title);
+    List<Performance> findAllByTitle(String title);
+    List<Performance> findAll();
     List<Performance> findByTheater(Theater theater);
     List<Performance> findByDate(Date date);
     List<Performance> findByTime(Time time);

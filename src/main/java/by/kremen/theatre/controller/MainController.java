@@ -1,5 +1,6 @@
 package by.kremen.theatre.controller;
 
+import by.kremen.theatre.model.Performance;
 import by.kremen.theatre.model.User;
 import by.kremen.theatre.model.Role;
 import by.kremen.theatre.repository.PerformanceRepository;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -57,6 +60,27 @@ public class MainController {
         else
              model.addAttribute("users", userRepository.findAll());
         return "main";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam String title, Model model) {
+        List<Performance> performances = null;
+        if (title != null && !title.isEmpty())
+            performances = performanceRepository.findAllByTitle(title);
+        else
+            performances = performanceRepository.findAll();
+        if (performances == null) {
+            model.addAttribute("message", "No performances with such title");
+            return "/main";
+        } else {
+            model.addAttribute("performances", performances);
+            return "searchPerformances";
+        }
+    }
+
+    @GetMapping("/error")
+    public String error(@AuthenticationPrincipal User user, Model model) {
+        return "error";
     }
 }
 

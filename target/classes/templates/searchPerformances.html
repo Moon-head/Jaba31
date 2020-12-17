@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<div>performances list</div>
+
+    <span th:if="${performances.empty}">
+         No performances Available </span>
+
+    <span th:each="performance : ${performances}">
+        <span th:text="${performance.title}"/>
+        <span th:text="${performance.theater}"/>
+        <span th:text="${performance.date}"/>
+        <a  th:href="@{/review(perf_id=${performance.id})}">Add new review page</a>
+        </br>
+    </span>
+</div>
+</body>
+</html>
