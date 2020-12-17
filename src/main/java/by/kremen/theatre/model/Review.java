@@ -25,7 +25,7 @@ public class Review {
     private Performance performance;
 
     @NotBlank(message = "body cannot be empty")
-    private Integer body;
+    private String body;
 
     public Integer getId() {
         return id;
@@ -59,11 +59,11 @@ public class Review {
         this.performance = performance;
     }
 
-    public Integer getBody() {
+    public String getBody() {
         return body;
     }
 
-    public void setBody(Integer body) {
+    public void setBody(String body) {
         this.body = body;
     }
 }

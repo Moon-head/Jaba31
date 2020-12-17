@@ -7,12 +7,14 @@
 </head>
     <div align="center">
         <div>
+        <span th:text="${performance.title}"/>
+        <span th:text="${performance.theater.name}"/>
+        <span th:text="${performance.date}"/>
+        <span th:text="${performance.time}"/></br>
             <form method="post" th:action="@{/review}">
-                <input type="text" name="title" placeholder="enter a dish name"/>
-                <input type="text" name="dish_description" placeholder="enter a description"/>
-                <input type="text" name="category" placeholder="enter a category"/>
-                <input type="text" name="price" placeholder="enter price"/>
-                <button type="submit">Add dish</button>
+                <input type="text" name="title" placeholder="enter a review title"/>
+                <input type="text" name="body" placeholder="enter a description"/>
+                <button type="submit">Add review</button>
             </form>
         </div>
     </div>

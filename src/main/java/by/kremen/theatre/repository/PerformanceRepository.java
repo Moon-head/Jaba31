@@ -11,6 +11,8 @@ import java.util.List;
 
 @Repository
 public interface PerformanceRepository extends CrudRepository<Performance, Integer> {
+    Performance findById(int id);
+    List<Performance> findById(long id);
     Performance findByTitle(String title);
     List<Performance> findByTheater(Theater theater);
     List<Performance> findByDate(Date date);
