@@ -17,7 +17,7 @@ public class Theater {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank(message = "dishname cannot be empty")
+    @NotBlank(message = "name cannot be empty")
     private String name;
 
     public Integer getId() {
@@ -36,4 +36,8 @@ public class Theater {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

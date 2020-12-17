@@ -8,15 +8,17 @@
 <body>
 <div align="center">
     <div>
-        <form method="post" th:action="@{/admin/performance}">
-            <input type="text" name="title" placeholder="enter title"/>
-            <input type="text" name="date" placeholder="YYYY-MM-DD HH:MM:SS"/>
+
+        <span th:text="${performance.id}"/></br>
+        <form method="post" th:action="@{/admin/performanceUpd(perf_id=${performance.id})}">
+            <input type="text" name="title" placeholder="${performance.title}" th:value="${performance.title}"/>
+            <input type="text" name="date" placeholder="${performance.date}" th:value="${performance.date}"/>
             <select name="theater_id">
                 <span th:each="theater : ${theaters}">
                     <option th:value="${theater.id}" th:text="${theater.name}"></option>
                 </span>
             </select>
-            <button type="submit">Add performance</button>
+            <button type="submit">Update performance</button>
         </form>
     </div>
 </div>

@@ -42,8 +42,13 @@
     </span>
 </div>
 
-<div>performances list
+<form th:action="@{/admin/performance}" method="get">
+    <button>Add performance</button>
+</form>
+<br>
 
+<div>performances list
+<br>
     <span th:if="${performances.empty}">
          No performances Available </span>
 
@@ -51,8 +56,7 @@
         <span th:text="${performance.title}"/>
         <span th:text="${performance.theater}"/>
         <span th:text="${performance.date}"/>
-        <span th:text="${performance.time}"/>
-        <a  th:href="@{/performance(perf_id=${performance.id})}">Add new review page</a>
+        <a  th:href="@{/admin/performanceUpd(perf_id=${performance.id})}">Update performance</a>
         </br>
     </span>
 </div>

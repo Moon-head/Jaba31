@@ -6,20 +6,19 @@
     <title>performance</title>
 </head>
 <body>
-<div>performances list
-
-    <span th:if="${performance.empty}">
-         No performances  </span>
-
-    <span th:each="performance : ${performances}">
-        <span th:text="${performance.id}"/>
-        <span th:text="${performance.title}"/>
-        <span th:text="${performance.theatre}"/>
-        <span th:text="${performance.date}"/>
-        <span th:text="${performance.time}"/>
-        <span th:text="${performance.actors}"/></br>
-        <!--<b th:text="${user.GetAuthorName()}"></b></br>-->
-    </span>
+<div align="center">
+    <div>
+        <form method="post" th:action="@{/admin/performance}">
+            <input type="text" name="title" placeholder="enter title"/>
+            <input type="text" name="date" placeholder="YYYY-MM-DD HH:MM:SS"/>
+            <select name="theater_id">
+                <span th:each="theater : ${theaters}">
+                    <option th:value="${theater.id}" th:text="${theater.name}"></option>
+                </span>
+            </select>
+            <button type="submit">Add performance</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

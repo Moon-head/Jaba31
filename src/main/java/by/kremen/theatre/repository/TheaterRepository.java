@@ -10,4 +10,6 @@ import java.util.List;
 public interface TheaterRepository extends CrudRepository<Theater, Integer> {
     Theater findByName(String name);
     List<Theater> findAllByName(String name);
+    List<Theater> findAll();
+    Theater findById(int id);
 }

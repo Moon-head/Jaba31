@@ -1,5 +1,7 @@
 package by.kremen.theatre.model;
 
+import by.kremen.theatre.form.PerformanceForm;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -28,7 +30,6 @@ public class Performance {
     @Column(name="date")
     private Date date;
 
-    @NotBlank
     @Column(name="time")
     private Time time;
 
@@ -83,5 +84,16 @@ public class Performance {
 
     public void setActors(List<Actor> actors) {
         this.actors = actors;
+    }
+
+    public Performance(PerformanceForm pf, Theater theater)
+    {
+        this.title = pf.getTitle();
+        this.theater = theater;
+        this.date = pf.getDate();
+
+    }
+
+    public Performance() {
     }
 }
