@@ -14,6 +14,7 @@ import static org.junit.matchers.JUnitMatchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -46,5 +47,12 @@ public class LoginTest {
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    public void wrongCredentials() throws Exception {
+        this.mockMvc.perform(post("/login").param("nouser", "nouser"))
+                .andDo(print())
+                .andExpect(status().isForbidden());
     }
 }

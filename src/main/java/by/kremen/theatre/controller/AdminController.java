@@ -112,9 +112,7 @@ public class AdminController {
     public String updUser(@RequestParam String perf_id, PerformanceForm performanceForm, Model model, @AuthenticationPrincipal User user){
 System.out.println(perf_id);
         Performance performance = performanceRepository.findById(Integer.parseInt(perf_id));
-        System.out.println(performance.getTitle());
         Theater theater = theaterRepository.findById(performanceForm.theater_id);
-        System.out.println(theater.getName());
 
         performance.setTitle(performanceForm.getTitle());
         performance.setDate(performanceForm.getDate());
