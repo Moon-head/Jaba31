@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+
+<div>
+    <form method="post">
+       <input type="text" name="name" placeholder="enter name"/>
+       <input type="text" name="password" placeholder="enter password"/>
+       <input type="text" name="email" placeholder="enter email"/>
+       <button type="submit">Add user</button>
+    </form>
+</div>
+<div>
+    <form method="post" th:action="@{/filter}">
+        <input type="text" name="filter" placeholder="enter name"/>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>Users list
+
+    <span th:if="${users.empty}">
+         No Users Available </span>
+
+    <span th:each="user : ${users}">
+        <span th:text="${user.id}"/>
+        <span th:text="${user.username}"/>
+        <span th:text="${user.password}"/>
+        <span th:text="${user.roles}"/>
+        <span th:text="${user.email}"/></br>
+        <!--<b th:text="${user.GetAuthorName()}"></b></br>-->
+    </span>
+</div>
+
+<div>performances list
+
+    <span th:if="${performances.empty}">
+         No performances Available </span>
+
+    <span th:each="performance : ${performances}">
+        <span th:text="${performance.title}"/>
+        <span th:text="${performance.theater}"/>
+        <span th:text="${performance.date}"/>
+        <span th:text="${performance.time}"/>
+        <a  th:href="@{/performance(perf_id=${performance.id})}">Add new review page</a>
+        </br>
+    </span>
+</div>
+</body>
+</html>
