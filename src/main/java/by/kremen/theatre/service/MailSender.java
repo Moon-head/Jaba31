@@ -33,7 +33,7 @@ public class MailSender {
         log.info("Mail sender was configured");
         return mailSender;
     }
-    public void Send(String subject, String text, String email) {
+    public boolean Send(String subject, String text, String email) {
         JavaMailSenderImpl javaMailSender = JavaMailSender();
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setSubject(subject); //The subject of the mail
@@ -42,5 +42,6 @@ public class MailSender {
         mailMessage.setFrom("nodejs.lab6@gmail.com"); //Who sent it
         javaMailSender.send(mailMessage);
         log.info("Mail was sent to " + email);
+        return true;
     }
 }
