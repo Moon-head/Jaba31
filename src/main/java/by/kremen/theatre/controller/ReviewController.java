@@ -27,6 +27,8 @@ public class ReviewController {
     @Autowired
     private UserRepository userRepository;
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ReviewController.class);
+
     @PostMapping("/review")
     public String addUser(@RequestParam String perf_id, Review review, Model model, @AuthenticationPrincipal User user){
 
@@ -40,6 +42,8 @@ public class ReviewController {
 
         review.setPerformance(performanceRepository.findById(Integer.parseInt(perf_id)));
         reviewRepository.save(review);
+
+        log.info("add review");
         return "redirect:/main";
     }
 
@@ -51,6 +55,7 @@ public class ReviewController {
         model.addAttribute("performance", performance);
         model.addAttribute("id", perf_id);
 
+        log.info("get add review");
         return "review";
     }
 
@@ -63,6 +68,7 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
 
+        log.info("get reviews of user");
         return "reviews";
     }
 
@@ -74,6 +80,7 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
 
+        log.info("get all reviews");
         return "reviews";
     }
 
@@ -86,6 +93,7 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
 
+        log.info("add review on performance");
         return "reviews";
     }
 }

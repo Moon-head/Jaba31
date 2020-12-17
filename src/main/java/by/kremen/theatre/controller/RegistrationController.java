@@ -17,8 +17,12 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RegistrationController.class);
+
     @GetMapping("/registration")
     public String registration(){
+
+        log.info("get registration");
         return "registration";
     }
 
@@ -34,6 +38,8 @@ public class RegistrationController {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
+
+        log.info("registere new user");
         return "redirect:/login";
     }
 }

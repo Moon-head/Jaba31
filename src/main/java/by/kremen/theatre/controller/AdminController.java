@@ -6,6 +6,7 @@ import by.kremen.theatre.repository.ActorRepository;
 import by.kremen.theatre.repository.PerformanceRepository;
 import by.kremen.theatre.repository.TheaterRepository;
 import by.kremen.theatre.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
 
+
+
+@Slf4j
 @Controller
 public class AdminController {
     @Autowired
@@ -31,12 +39,14 @@ public class AdminController {
     @Autowired
     private ActorRepository actorRepository;
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminController.class);
 
     @GetMapping("/admin/main")
     public String main(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", userRepository.findByUsername(user.getUsername()));
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("performances", performanceRepository.findAll());
+        log.info("get admin main");
         return "mainAdmin";
     }
 
@@ -53,6 +63,7 @@ public class AdminController {
 
         //review.setPerformance(performanceRepository.findById(Integer.parseInt(perf_id)));
         performanceRepository.save(performance);
+        log.info("create new performance");
         return "redirect:/admin/main";
     }
 
@@ -70,6 +81,7 @@ public class AdminController {
         List<Actor> actors = actorRepository.findAll();
         model.addAttribute("actors", actors);
         model.addAttribute("theaters", theaters);
+        log.info("get admin add performance");
 
         return "performance";
     }
@@ -91,6 +103,7 @@ public class AdminController {
         model.addAttribute("theaters", theaters);
         model.addAttribute("performance", performance);
         model.addAttribute("id", perf_id);
+        log.info("get admin update performance");
 
         return "performanceUpd";
     }
@@ -114,6 +127,9 @@ System.out.println(perf_id);
 
         //review.setPerformance(performanceRepository.findById(Integer.parseInt(perf_id)));
         performanceRepository.save(performance);
+
+        log.info("admin update performance");
+
         return "redirect:/admin/main";
     }
 
@@ -128,6 +144,8 @@ System.out.println(perf_id);
         //Long idL = Long.getLong(perf_id);
         //Performance performance = performanceRepository.findById(idL);
         performanceRepository.delete(performanceRepository.findById(Integer.parseInt(perf_id)));
+
+        log.info("admin delete performance");
 
         return "redirect:/admin/main";
     }

@@ -28,26 +28,20 @@
         <button type="submit">Search</button>
     </form>
 </div>
+<div>Users list
+
     <span th:if="${users.empty}">
          No Users Available </span>
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-        <td th:text="${user.id}"/>
-        <td th:text="${user.username}"/>
-        <td th:text="${user.roles}"/>
-        <td th:text="${user.email}"/>
-        </tr>
-        </tbody>
-    </table>
+
+    <span th:each="user : ${users}">
+        <span th:text="${user.id}"/>
+        <span th:text="${user.username}"/>
+        <span th:text="${user.password}"/>
+        <span th:text="${user.roles}"/>
+        <span th:text="${user.email}"/></br>
+        <!--<b th:text="${user.GetAuthorName()}"></b></br>-->
+    </span>
+</div>
 
 <br>
 <form th:action="@{/admin/performance}" method="get">
@@ -64,8 +58,7 @@
             <th>Title</th>
             <th>Theater</th>
             <th>Date</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th>Add</th>
             <th>Get</th>
         </tr>
         </thead>
@@ -76,7 +69,6 @@
             <td th:text="${performance.date}"></td>
             <td><a th:href="@{/admin/performanceUpd(perf_id=${performance.id})}"/>Update</td>
             <td><a th:href="@{/admin/performanceDel(perf_id=${performance.id})}"/>Delete</td>
-            <td><a  th:href="@{/reviewsPerf(perf_id=${performance.id})}">Get</a></td>
         </tr>
         </tbody>
     </table>
