@@ -1,5 +1,6 @@
 package by.kremen.theatre.service;
 
+import by.kremen.theatre.controller.ReviewController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,6 +13,9 @@ import java.util.Properties;
 
 
 public class MailSender {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailSender.class);
+
     public JavaMailSenderImpl JavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
@@ -25,6 +29,8 @@ public class MailSender {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
+
+        log.info("Mail sender was configured");
         return mailSender;
     }
     public void Send(String subject, String text, String email) {
@@ -35,5 +41,6 @@ public class MailSender {
         mailMessage.setTo(email); //Who to send to
         mailMessage.setFrom("nodejs.lab6@gmail.com"); //Who sent it
         javaMailSender.send(mailMessage);
+        log.info("Mail was sent to " + email);
     }
 }

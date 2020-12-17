@@ -45,13 +45,11 @@ public class ReviewController {
         reviewRepository.save(review);
 
         String text =" Your review " + review.getTitle() + ": " + review.getBody() + " was posted to " + review.getPerformance().getTitle();
-        model.addAttribute("text", text);
-        //EmailController ec = new EmailController();
-        //ec.sendSimpleEmail(text, user.getEmail());
+
         MailSender mailSender = new MailSender();
         mailSender.Send("Thanks for you review", text, user.getEmail());
+
         log.info("add review");
-        //return "redirect:/sendEmail";
         return "redirect:/main";
     }
 

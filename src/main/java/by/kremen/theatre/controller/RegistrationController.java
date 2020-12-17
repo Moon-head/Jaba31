@@ -4,6 +4,7 @@ package by.kremen.theatre.controller;
 import by.kremen.theatre.model.User;
 import by.kremen.theatre.model.Role;
 import by.kremen.theatre.repository.UserRepository;
+import by.kremen.theatre.service.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,10 @@ public class RegistrationController {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
+
+        String text ="Thank you for registration, " + user.getUsername();
+        MailSender mailSender = new MailSender();
+        mailSender.Send("Registration", text, user.getEmail());
 
         log.info("registere new user");
         return "redirect:/login";
