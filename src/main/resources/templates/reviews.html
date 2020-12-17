@@ -6,17 +6,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
-<div>reviews list</div>
-
     <span th:if="${reviews.empty}">
          No performances Available </span>
-
-    <span th:each="review : ${reviews}">
-        <span th:text="${review.title}"/>
-        <span th:text="${review.body}"/>
-        <span th:text="${review.user.username}"/>
-        </br>
-    </span>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Theater</th>
+        <th>User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review : ${reviews}">
+        <td th:text="${review.title}"/>
+        <td th:text="${review.body}"/>
+        <td th:text="${review.user.username}"/>
+    </tr>
+    </tbody>
+</table>
 </div>
 </body>
 </html>

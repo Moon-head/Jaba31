@@ -58,12 +58,8 @@
         <td th:text="${performance.title}"></td>
         <td th:text="${performance.theater}"></td>
         <td th:text="${performance.date}"></td>
-        <td>    <form method="post" th:action="@{/review(perf_id=${performance.id})}">
-            <button type="submit">◄</button>
-        </form></td>
-        <td>    <form method="post" th:action="@{/reviewsPerf(perf_id=${performance.id})}">
-            <button type="submit">►</button>
-        </form></td>
+        <td><a  th:href="@{/review(perf_id=${performance.id})}">Add</a></td>
+        <td><a  th:href="@{/reviewsPerf(perf_id=${performance.id})}">Get</a></td>
     </tr>
     </tbody>
 </table>

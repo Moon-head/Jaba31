@@ -78,10 +78,6 @@ public class MainController {
         }
     }
 
-    @GetMapping("/error")
-    public String error(@AuthenticationPrincipal User user, Model model) {
-        return "error";
-    }
 }
 
 

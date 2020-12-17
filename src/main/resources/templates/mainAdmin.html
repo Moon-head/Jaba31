@@ -49,19 +49,28 @@
 </form>
 <br>
 
-<div>performances list
-<br>
     <span th:if="${performances.empty}">
          No performances Available </span>
 
-    <span th:each="performance : ${performances}">
-        <span th:text="${performance.title}"/>
-        <span th:text="${performance.theater}"/>
-        <span th:text="${performance.date}"/>
-        <a  th:href="@{/admin/performanceUpd(perf_id=${performance.id})}">Update performance</a>
-        <a  th:href="@{/admin/performanceDel(perf_id=${performance.id})}">Delete performance</a>
-        </br>
-    </span>
-</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Theater</th>
+            <th>Date</th>
+            <th>Add</th>
+            <th>Get</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="performance : ${performances}">
+            <td th:text="${performance.title}"></td>
+            <td th:text="${performance.theater}"></td>
+            <td th:text="${performance.date}"></td>
+            <td><a th:href="@{/admin/performanceUpd(perf_id=${performance.id})}"/>Update</td>
+            <td><a th:href="@{/admin/performanceDel(perf_id=${performance.id})}"/>Delete</td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

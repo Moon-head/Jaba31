@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/"). permitAll()
-                    .antMatchers("/error"). permitAll()
                     .antMatchers("/registration").permitAll()
                     .antMatchers("/admin/**").hasAuthority("ADMIN")
                     .anyRequest().authenticated()

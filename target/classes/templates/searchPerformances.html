@@ -10,14 +10,24 @@
 
     <span th:if="${performances.empty}">
          No performances Available </span>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Theater</th>
+        <th>Date</th>
+        <th>Add</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="performance : ${performances}">
+        <td th:text="${performance.title}"></td>
+        <td th:text="${performance.theater}"></td>
+        <td th:text="${performance.date}"></td>
+        <td><a  th:href="@{/review(perf_id=${performance.id})}">Add</a></td>
+    </tr>
+    </tbody>
+</table>
 
-    <span th:each="performance : ${performances}">
-        <span th:text="${performance.title}"/>
-        <span th:text="${performance.theater}"/>
-        <span th:text="${performance.date}"/>
-        <a  th:href="@{/review(perf_id=${performance.id})}">Add new review page</a>
-        </br>
-    </span>
-</div>
 </body>
 </html>
