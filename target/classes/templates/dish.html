@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <div align="center">
+        <div>
+            <form method="post" th:action="@{/dish}">
+                <input type="text" name="dishname" placeholder="enter a dish name"/>
+                <input type="text" name="dish_description" placeholder="enter a description"/>
+                <input type="text" name="category" placeholder="enter a category"/>
+                <input type="text" name="price" placeholder="enter price"/>
+                <button type="submit">Add dish</button>
+            </form>
+        </div>
+    </div>
+<body>
+
+</body>
+</html>
