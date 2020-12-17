@@ -11,7 +11,7 @@
         <span th:text="${performance.theater.name}"/>
         <span th:text="${performance.date}"/>
         <span th:text="${performance.time}"/></br>
-            <form method="post" th:action="@{/review}">
+            <form method="post" th:action="@{/review(perf_id=${performance.id})}">
                 <input type="text" name="title" placeholder="enter a review title"/>
                 <input type="text" name="body" placeholder="enter a description"/>
                 <button type="submit">Add review</button>

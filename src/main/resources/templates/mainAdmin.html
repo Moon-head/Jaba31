@@ -52,8 +52,7 @@
         <span th:text="${performance.theater}"/>
         <span th:text="${performance.date}"/>
         <span th:text="${performance.time}"/>
-        <a  th:href="@{/review(perf_id=${performance.id})}">Add new review page</a>
-        <a  th:href="@{'/review?perf_id=' + ${performance.id}}">Add new review page</a>
+        <a  th:href="@{/performance(perf_id=${performance.id})}">Add new review page</a>
         </br>
     </span>
 </div>
