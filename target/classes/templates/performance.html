@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <title>performance</title>
+    <title>Performance</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
-<form th:action="@{/admin/main}" method="get">
-    <button>To main</button>
-</form>
+
+<div style="position: absolute; left: 20px; top: 5px;">
+    <form th:action="@{/admin/main}" method="get">
+        <input type="submit" value="Main" style="width: 100px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
 <div align="center">
-    <div>
-        <form method="post" th:action="@{/admin/performance}">
-            <input type="text" name="title" placeholder="enter title"/>
-            <input type="text" name="date" placeholder="YYYY-MM-DD HH:MM:SS"/>
-            <select name="theater_id">
+    <div align="center" style="max-width: 1000px">
+        <form method="post" th:action="@{/admin/performance}" class="form-inline">
+            <div class="form-group">
+                <input type="text" name="title" placeholder="enter title" class="form-control" style="width: 300px; margin-right: 5px;"/>
+                <input type="text" name="date" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" style="width: 250px; margin-right: 5px;"/>
+                <select name="theater_id" class="form-control" style="width: 250px; margin-right: 5px;">
                 <span th:each="theater : ${theaters}">
                     <option th:value="${theater.id}" th:text="${theater.name}"></option>
                 </span>
-            </select>
-            <button type="submit">Add performance</button>
+                </select>
+                <button type="submit" class="btn btn-dark" style="width: 200px">Add performance</button>
+            </div>
         </form>
     </div>
 </div>

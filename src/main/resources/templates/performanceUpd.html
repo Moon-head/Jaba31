@@ -5,22 +5,30 @@
     <title>performance</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
-<form th:action="@{/admin/main}" method="get">
-    <button>To main</button>
-</form>
-<div align="center">
-    <div>
 
-        <span th:text="${performance.id}"/></br>
-        <form method="post" th:action="@{/admin/performanceUpd(perf_id=${performance.id})}">
-            <input type="text" name="title" placeholder="${performance.title}" th:value="${performance.title}"/>
-            <input type="text" name="date" placeholder="${performance.date}" th:value="${performance.date}"/>
-            <select name="theater_id">
-                <span th:each="theater : ${theaters}">
+<div style="position: absolute; left: 20px; top: 5px;">
+    <form th:action="@{/admin/main}" method="get">
+        <input type="submit" value="Main" style="width: 100px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
+<div align="center">
+    <div align="center" style="max-width: 1000px">
+        <form method="post" th:action="@{/admin/performanceUpd(perf_id=${performance.id})}" class="form-inline">
+            <b><div align="center" style="margin-left: 495px; margin-bottom: 5px" th:text="${performance.id}"/></b></br>
+            <div class="form-group">
+                <input type="text" name="title" placeholder="enter title" th:value="${performance.title}" class="form-control" style="width: 300px; margin-right: 5px;"/>
+                <input type="text" name="date" placeholder="YYYY-MM-DD HH:MM:SS" th:value="${performance.date}" class="form-control" style="width: 250px; margin-right: 5px;"/>
+                <select name="theater_id" class="form-control" style="width: 250px; margin-right: 5px;">
+                <span th:each="theater : ${theaters}" class="custom-select">
                     <option th:value="${theater.id}" th:text="${theater.name}"></option>
                 </span>
-            </select>
-            <button type="submit">Update performance</button>
+                </select>
+                <button type="submit" class="btn btn-dark" style="width: 200px">Update performance</button>
+            </div>
         </form>
     </div>
 </div>

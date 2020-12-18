@@ -3,9 +3,15 @@
     <title>Reviews</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
-<form th:action="@{/main}" method="get">
-    <button>To main</button>
-</form>
+<div style="position: absolute; left: 20px; top: 5px;">
+    <form th:action="@{/main}" method="get">
+        <input type="submit" value="Main" style="width: 100px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
     <span th:if="${reviews.empty}">
          No performances Available </span>
 <table class="table table-sm table-striped">
@@ -22,7 +28,7 @@
         <td th:text="${review.title}"/>
         <td th:text="${review.body}"/>
         <td th:text="${review.user.username}"/>
-        <td th:if="${owner}"><a th:href="@{/reviewDel(rev_id=${review.id})}"/>Delete review</td>
+        <td th:if="${owner}"><a th:href="@{/reviewDel(rev_id=${review.id})}"/>Delete</td>
     </tr>
     </tbody>
 </table>

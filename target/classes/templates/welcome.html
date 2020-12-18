@@ -3,8 +3,23 @@
     <title>Getting Started: Serving Web Content</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
+
 <h1>Hello, user!</h1>
-<a  href="/main">Main page</a>
-<a  href="/admin/main">Main admin page</a>
+
+<div style="position: absolute; right: 20px; top: 5px;">
+    <form th:action="@{/main}" method="get">
+        <input type="submit" value="Main" style="width: 150px" class="btn btn-dark"/>
+    </form>
+</div>
+<div style="position: absolute; right: 175px; top: 5px;">
+    <form th:action="@{/admin/main}" method="get">
+        <input type="submit" value="Admin Main" style="width: 150px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
+
 </body>
 </html>

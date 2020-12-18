@@ -3,9 +3,15 @@
     <title>Search</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
-<form th:action="@{/main}" method="get">
-    <button>To main</button>
-</form>
+<div style="position: absolute; left: 20px; top: 5px;">
+    <form th:action="@{/main}" method="get">
+        <input type="submit" value="Main" style="width: 100px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
     <span th:if="${performances.empty}">
          No performances Available </span>
 
@@ -23,7 +29,7 @@
         <td th:text="${performance.title}"/>
         <td th:text="${performance.theater}"/>
         <td th:text="${performance.date}"/>
-        <td><a  th:href="@{/review(perf_id=${performance.id})}">Add review</a></td>
+        <td><a  th:href="@{/review(perf_id=${performance.id})}">Add</a></td>
     </tr>
     </tbody>
 </table>

@@ -4,23 +4,43 @@
     <title>Title</title>
     <head th:replace="fragments/header :: head"></head>
 <body>
-<form th:action="@{/main}" method="get">
-    <button>To main</button>
-</form>
+
+<div style="position: absolute; left: 20px; top: 5px;">
+    <form th:action="@{/main}" method="get">
+        <input type="submit" value="Main" style="width: 100px" class="btn btn-dark"/>
+    </form>
+</div>
+
+<br>
+<br>
+
     <div align="center">
-        <div>
-        <span th:text="${performance.title}"/>
-        <span th:text="${performance.theater.name}"/>
-        <span th:text="${performance.date}"/>
-        <span th:text="${performance.time}"/></br>
-                <form method="post" th:action="@{/review(perf_id=${performance.id})}">
-                    <input type="text" name="title" placeholder="enter a review title"/>
-                    <input type="text" name="body" placeholder="enter a description"/>
-                    <button type="submit">Add review</button>
+        <table class="table table-sm" style="max-width: 1000px">
+            <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Theater</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${performance.title}"/>
+                <td th:text="${performance.theater.name}"/>
+                <td th:text="${performance.date}"/>
+            </tr>
+            </tbody>
+        </table>
+        <div align="center" style="max-width: 1000px">
+                <form method="post" th:action="@{/review(perf_id=${performance.id})}" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="title" placeholder="title" class="form-control" style="width: 200px;"/>
+                        <input type="text" name="body" placeholder="description" class="form-control" style="width: 690px; margin-left: 5px; margin-right: 5px;"/>
+                        <button type="submit" class="btn btn-dark" style="width: 100px">Add review</button>
+                    </div>
                 </form>
         </div>
     </div>
-<body>
 
 </body>
 </html>

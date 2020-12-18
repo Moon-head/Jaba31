@@ -2,34 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <title>Main</title>
 <head th:replace="fragments/header :: head"></head>
+
 <body>
 
-<div>
+<div style="position: absolute; left: 20px; top: 5px;">
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
+        <input type="submit" value="Sign Out" style="width: 100px" class="btn btn-dark"/>
     </form>
 </div>
 
 <br>
+<br>
 
-<div>
-    <form method="post">
-       <input type="text" name="name" placeholder="enter name"/>
-       <input type="text" name="password" placeholder="enter password"/>
-       <input type="text" name="email" placeholder="enter email"/>
-       <button type="submit">Add user</button>
-    </form>
-</div>
-
-<div style="position: absolute; right: 0; top: 0">
-    <form method="post" th:action="@{/search}">
-        <input type="text" name="title" placeholder="enter title"/>
-        <button type="submit">Search</button>
+<div style="position: absolute; right: 20px; top: 5px">
+    <form method="post" th:action="@{/search}" class="form-inline">
+        <input type="text" name="title" placeholder="enter title" class="form-control"/>
+        <button class="btn btn-dark" type="submit">Search</button>
     </form>
 </div>
 
     <span th:if="${users.empty}">
          No Users Available </span>
+
 <table class="table table-sm table-striped">
     <thead class="thead-dark">
     <tr>
@@ -51,9 +45,8 @@
     </tbody>
 </table>
 
-<br>
 <form th:action="@{/admin/performance}" method="get">
-    <button>Add performance</button>
+    <button class="btn btn-dark" style="margin-left: 20px; margin-top: 5px;">Add performance</button>
 </form>
 <br>
 
@@ -66,8 +59,8 @@
             <th>Title</th>
             <th>Theater</th>
             <th>Date</th>
-            <th>Add</th>
-            <th>Get</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
