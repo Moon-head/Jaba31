@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
+
     <title>Spring Security Example </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-</head>
+    <head th:replace="fragments/header :: head"></head>
+    <style>
+        .login-form {
+            width: 340px;
+            margin: 50px auto;
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+            margin: 5px;
+        }
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
 <body>
-<div align="center">
-<h1 >Registration</h1>
-    <span th:if="${message}">
-        <span th:text="${message}"/>
-    </span>
+<div align="center" class="login-form">
     <form th:action="@{/registration}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><label> Email: <input type="email" name="email"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+        <h1 >Registration</h1>
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Username" required="required"/>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="required"/>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" class="form-control" placeholder="Email" id="exampleInputEmail1" aria-describedby="emailHelp"  required="required"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Sign In" class="btn btn-dark"/>
+        </div>
     </form>
 </div>
 </body>
